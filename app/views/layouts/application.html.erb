@@ -43,13 +43,19 @@
           <li><a href="/comments">Comments</a></li>
           <li><a href="/likes">Likes</a></li>
           <li><a href="/photos">Photos</a></li>
+          <li><a href="/users">Users</a></li>
           <li><a href="/rails/info">Sitemap</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/users/edit">Dummy Edit Profile Link</a></li>
-          <li><a href="/users/sign_out" data-method="delete" rel="nofollow">Dummy Sign Out Link</a></li>
+          <% if current_user !=nil %>
+          <li><a href="/users/edit"><%= current_user.username %></a></li>
+          <li><a href="/users/sign_out" data-method="delete" rel="nofollow"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out </a></li>
+          <% else %>
+          <li><a href="/users/sign_up"></a>Sign Up</li>
+          <li><a href="/users/sign_in"></a>Sign In</li>
         </ul>
+        <% end %>
       </div><!-- /.navbar-collapse -->
     </div>
   </nav>
