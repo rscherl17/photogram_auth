@@ -29,19 +29,29 @@
           <% photo.comments.each do |comment| %>
           <li class="list-group-item"><%= comment.user.username %>: <%= comment.body %></li>
           <% end %>
-          <form action="create_comment" method="post">
+          <li class="media">
+            <div class="media-body">
+          <form action="/create_comment" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
             <input name="photo_id" value="<%= photo.id %>" type="hidden">
             <input name="user_id" value="<%= current_user.id %>" type="hidden">
-            <div class="input-group">
+
+          <div class="form-group">
+          <label for="body" class="sr-only">Body</label>
+          <div class="input-group">
             <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
-              <button class="btn btn-link" type="submit">
-                <i class="fa fa-commenting-o"></i>
-              </button>
-            </div>
-          </form>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+              <a href="/comments/new"><i class="fa fa-comment-o"></i></a>
+            </button>
+          </span>
+          </div>
+        </div>
+      </form>
         </ul>
       </div>
+    </div>
 
         <td>
           <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
